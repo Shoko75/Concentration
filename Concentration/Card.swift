@@ -12,11 +12,17 @@ import Foundation
 // 1: Struct is no inheritence
 // 2: Structs are Value types and Class are refirence types
 
-struct Card {
+struct Card: Hashable
+{
+    var hashValue: Int{ return identifier }
+    
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
     
     var isFaceUp = false
     var isMatched = false
-    var identifier: Int
+    private var identifier: Int
     
     private static var indirectFactory = 0
     
